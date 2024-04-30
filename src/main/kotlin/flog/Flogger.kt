@@ -60,6 +60,9 @@ class Flogger(private val filePath: String) {
      * @param [level] A numerical value to determine the error level.
      */
     fun log(event: String, level: Int) {
+        if(event.isBlank()) {
+            return
+        }
         try {
             this.write(event, level)
         } catch (e: Exception) {
