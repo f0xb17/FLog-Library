@@ -9,8 +9,8 @@
 package com.foxbit.flog
 
 /**
- * The enum sets the problem level using a number.
- * @param [level] Represents the problem level using am integer value.
+ * This enum defines the error level. There are a total of 4 levels.
+ * @param [level] Represents the error level using am integer value.
  */
 enum class FloggerLevel(private val level: Int) {
     Info(1),
@@ -20,9 +20,9 @@ enum class FloggerLevel(private val level: Int) {
 
     companion object {
         /**
-         * This method returns the problem level that it determines using the numerical value @link[value].
-         * @param [value] Represents the problem level using am integer value.
-         * @return The problem level from @link[value]
+         * This method returns the error level that it determines using the numerical value @link[value].
+         * @param [value] Represents the error level using am integer value.
+         * @return The error level from @link[value]
          */
         fun getLoggerLevel(value: Int): FloggerLevel {
             return when(value) {
