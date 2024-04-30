@@ -24,7 +24,7 @@ enum class FloggerLevel(private val level: Int) {
          * @param [value] Represents the problem level using am integer value.
          * @return The problem level from @link[value]
          */
-        fun getLogLevel(value: Int): FloggerLevel {
+        fun getLoggerLevel(value: Int): FloggerLevel {
             return when(value) {
                 1 -> Info
                 2 -> Error
