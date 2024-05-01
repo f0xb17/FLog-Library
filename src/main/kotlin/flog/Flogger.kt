@@ -33,6 +33,14 @@ class Flogger(private val filePath: String) {
     }
 
     /**
+     * This method returns the color associated with the error level., from @link[FloggerLevel].
+     * @param [level] Numerical value used to determine the error level.
+     * @return a color associated with the error level @link[FloggerLevel].
+     */
+    private fun getColor(level: Int): String  {
+        return FloggerLevel.getColor(level)
+    }
+    /**
      * A method that returns a formatted timestamp.
      * @return A formatted timestamp based on the previously defined pattern at @link[dateFormat]
      */
@@ -54,6 +62,15 @@ class Flogger(private val filePath: String) {
     }
 
     /**
+     * This method prints the desired @link[event], with the desired @link[level] to the terminal.
+     * @param [event] The message to be logged.
+     * @param [level] A numerical value to determine the error level.
+     */
+    private fun print(event: String, level: Int) {
+        println("${this.getColor(level)}${this.getTimeStamp()}: ${this.getLevel(level)} - $event")
+    }
+
+    /**
      * This method calls the write function.
      *
      * @param [event] The message to be logged.
@@ -65,6 +82,7 @@ class Flogger(private val filePath: String) {
         }
         try {
             this.write(event, level)
+            this.print(event, level)
         } catch (e: Exception) {
             this.write(e.stackTraceToString(), 4).also {
                 println("${this.getTimeStamp()}: ${this.getLevel(4)} - ${e.printStackTrace()}")

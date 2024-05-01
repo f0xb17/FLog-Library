@@ -33,6 +33,20 @@ enum class FloggerLevel(private val level: Int) {
                 else -> throw IllegalArgumentException("Invalid argument: $value")
             }
         }
+        /**
+         * This method returns the color associated with the error level.
+         * @param [value] Represents the error level using am integer value.
+         * @return The color associated with the error level @link[value]
+         */
+        fun getColor(value: Int): String  {
+            return when(value) {
+                1 -> "\u001B[33m" // Yellow
+                2 -> "\u001B[31m" // Red
+                3 -> "\u001B[36m" // Cyan
+                4 -> "\u001B[32m" // Green
+                else -> throw IllegalArgumentException("Invalid argument: $value")
+            }
+        }
     }
 
 }
