@@ -58,6 +58,8 @@ class Flogger(private val filePath: String) {
     private fun write(event: String, level: Int) {
         FileWriter(this.filePath, true).use { writer ->
             writer.appendLine("${this.getTimeStamp()}: ${this.getLevel(level)} - $event")
+        }.also {
+            this.print(event, level)
         }
     }
 
@@ -82,7 +84,6 @@ class Flogger(private val filePath: String) {
         }
         try {
             this.write(event, level)
-            this.print(event, level)
         } catch (e: Exception) {
             this.write(e.stackTraceToString(), 4).also {
                 println("${this.getTimeStamp()}: ${this.getLevel(4)} - ${e.printStackTrace()}")
